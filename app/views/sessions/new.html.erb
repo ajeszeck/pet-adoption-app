@@ -1,0 +1,19 @@
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p> <%= error %> </p>
+  <% end %>
+<% end %>
+
+<%= form_tag sessions_path, method: :post do %>
+  <%= text_field_tag(
+      :email,
+      params[:email],
+      placeholder: "Email",
+  ) %>
+  <%= text_field_tag(
+      [:password],
+      params[:password],
+      placeholder: "Password",
+  ) %>
+  <%= submit_tag "Login" %>
+<% end %>

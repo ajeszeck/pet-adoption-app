@@ -9,6 +9,18 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to "Home", root_path %>
+      <% if session[:user_id] %>
+        <p><%= User.find(session[:user_id])[:first_name] %> <%= User.find(session[:user_id])[:last_name] %></p>
+        <%= form_tag(session_path(session[:user_id]), method: "delete") do %>
+          <%= submit_tag "logout" %>
+        <% end %>
+      <% else %>
+        <%= link_to "Login", new_session_path %>
+        <%= link_to "Register", new_user_path %>
+      <% end %>
+    </header>
     <h1>Pet Adoption</h1>
     <%= yield %>
   </body>
