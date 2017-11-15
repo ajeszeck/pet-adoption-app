@@ -11,6 +11,21 @@ class Pet < ApplicationRecord
     }
   end
 
+  def self.allSpecies
+    data = {
+      apikey: ENV["RG_API_KEY"],
+      objectType: "animalSpecies",
+      objectAction: "publicList"
+    }
+    response = HTTParty.post('https://api.rescuegroups.org/http/',
+      { headers: @headers, body: data.to_json} )
+    species = []
+    response.parsed_response["data"].each_pair do |key, value|
+      species << key
+    end
+    species
+  end
+
   def self.search
     data = {
       apikey: ENV["RG_API_KEY"],
@@ -47,7 +62,6 @@ class Pet < ApplicationRecord
       fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation" ]
     }
   }
-    p ENV["RG_API_KEY"]
     response = HTTParty.post('https://api.rescuegroups.org/http/',
       { headers: @headers, body: data.to_json} )
       p response.parsed_response["data"]

@@ -1,0 +1,5 @@
+<h3>Search for an animal</h3>
+<%= form_tag search_pets_path, method: :get do %>
+  <%= select_tag("species", options_for_select(species)) %>
+  <%= submit_tag("search") %>
+<% end %>
