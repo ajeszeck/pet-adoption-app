@@ -8,8 +8,7 @@ class PetsController < ApplicationController
     p @pets = Pet.search(params)
     @zipcode = params["animalLocation"]["zipcode"]
     @radius = params["animalLocationDistance"]["radius"]
-    @species = Pet.species
-    @statuses = Pet.statuses
+    @species = ["Dog", "Cat"]
     render "index"
   end
 

@@ -70,11 +70,27 @@ class Pet < ApplicationRecord
             criteria: options["animalLocationDistance"]["radius"],
           },
         ],
-      fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation" ]
+      fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation", "animalDescriptionPlain", "animalPictures" ]
     }
   }
     response = HTTParty.post('https://api.rescuegroups.org/http/',
       { headers: @headers, body: data.to_json} )
     response.parsed_response["data"]
+  end
+
+  def self.pictures(animalID)
+    data = {
+      apikey: ENV["RG_API_KEY"],
+      objectType: "animals",
+      objectAction: "pictures",
+      values: [
+        {
+          animalID: animalID
+        }
+      ]
+    }
+    response = HTTParty.post('https://api.rescuegroups.org/http/',
+      { headers: @headers, body: data.to_json} )
+    response.parsed_response
   end
 end
