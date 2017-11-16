@@ -11,14 +11,40 @@ class Pet < ApplicationRecord
     }
   end
 
-  def self.search
+  def self.species
+    data = {
+      apikey: ENV["RG_API_KEY"],
+      objectType: "animalSpecies",
+      objectAction: "publicList"
+    }
+    response = HTTParty.post('https://api.rescuegroups.org/http/',
+      { headers: @headers, body: data.to_json} )
+    species = []
+    response.parsed_response["data"].each_pair do |key, value|
+      species << key
+    end
+    species
+  end
+
+  def self.statuses
+    data = {
+      apikey: ENV["RG_API_KEY"],
+      objectType: "animals",
+      objectAction: "getPublicStatuses"
+    }
+    response = HTTParty.post('https://api.rescuegroups.org/http/',
+      { headers: @headers, body: data.to_json} )
+    response.parsed_response
+  end
+
+  def self.search(options)
     data = {
       apikey: ENV["RG_API_KEY"],
       objectType: "animals",
       objectAction: "publicSearch",
       search: {
         resultStart: 0,
-        resultLimit: 20,
+        resultLimit: 50,
         resultSort: "animalID",
         resultOrder: "asc",
         calcFoundRows: "Yes",
@@ -31,25 +57,40 @@ class Pet < ApplicationRecord
           {
             fieldName: "animalSpecies",
             operation: "equals",
-            criteria: "dog",
+            criteria: options["animalSpecies"],
           },
           {
             fieldName: "animalLocation",
             operation: "equals",
-            criteria: "92117",
+            criteria: options["animalLocation"]["zipcode"],
           },
           {
             fieldName: "animalLocationDistance",
             operation: "radius",
-            criteria: "30",
+            criteria: options["animalLocationDistance"]["radius"],
           },
         ],
-      fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation" ]
+      fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation", "animalDescriptionPlain", "animalPictures" ]
     }
   }
-    p ENV["RG_API_KEY"]
     response = HTTParty.post('https://api.rescuegroups.org/http/',
       { headers: @headers, body: data.to_json} )
-      p response.parsed_response["data"]
+    response.parsed_response["data"]
+  end
+
+  def self.pictures(animalID)
+    data = {
+      apikey: ENV["RG_API_KEY"],
+      objectType: "animals",
+      objectAction: "pictures",
+      values: [
+        {
+          animalID: animalID
+        }
+      ]
+    }
+    response = HTTParty.post('https://api.rescuegroups.org/http/',
+      { headers: @headers, body: data.to_json} )
+    response.parsed_response
   end
 end
