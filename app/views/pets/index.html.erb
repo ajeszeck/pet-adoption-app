@@ -1,6 +1,13 @@
-<%= render partial: "search_form", locals: {species: @allSpecies} %>
+<%= render partial: "search_form", locals: {species: @species} %>
 
-<h3>Available Animals within a 30 Mile Radius</h3>
-<%= @pets.each do |pet| %>
+<% if @pets %>
+  <h3>Available animals within <%= @radius %> miles of <%= @zipcode %></h3>
 
+  <%= @pets.each_pair do |id, pet| %>
+    <ul>
+      <li class="pet-name">Name: <%= pet["animalName"] %> </li>
+      <li> Breed: <%= pet["animalBreed"] %> </li>
+      <li> Zip Code: <%= pet["animalLocation"] %> </li>
+    </ul>
+  <% end %>
 <% end %>

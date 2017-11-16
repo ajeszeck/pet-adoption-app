@@ -11,7 +11,7 @@ class Pet < ApplicationRecord
     }
   end
 
-  def self.allSpecies
+  def self.species
     data = {
       apikey: ENV["RG_API_KEY"],
       objectType: "animalSpecies",
@@ -26,14 +26,25 @@ class Pet < ApplicationRecord
     species
   end
 
-  def self.search
+  def self.statuses
+    data = {
+      apikey: ENV["RG_API_KEY"],
+      objectType: "animals",
+      objectAction: "getPublicStatuses"
+    }
+    response = HTTParty.post('https://api.rescuegroups.org/http/',
+      { headers: @headers, body: data.to_json} )
+    response.parsed_response
+  end
+
+  def self.search(options)
     data = {
       apikey: ENV["RG_API_KEY"],
       objectType: "animals",
       objectAction: "publicSearch",
       search: {
         resultStart: 0,
-        resultLimit: 20,
+        resultLimit: 50,
         resultSort: "animalID",
         resultOrder: "asc",
         calcFoundRows: "Yes",
@@ -46,17 +57,17 @@ class Pet < ApplicationRecord
           {
             fieldName: "animalSpecies",
             operation: "equals",
-            criteria: "dog",
+            criteria: options["animalSpecies"],
           },
           {
             fieldName: "animalLocation",
             operation: "equals",
-            criteria: "92117",
+            criteria: options["animalLocation"]["zipcode"],
           },
           {
             fieldName: "animalLocationDistance",
             operation: "radius",
-            criteria: "30",
+            criteria: options["animalLocationDistance"]["radius"],
           },
         ],
       fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation" ]
@@ -64,6 +75,6 @@ class Pet < ApplicationRecord
   }
     response = HTTParty.post('https://api.rescuegroups.org/http/',
       { headers: @headers, body: data.to_json} )
-      p response.parsed_response["data"]
+    response.parsed_response["data"]
   end
 end

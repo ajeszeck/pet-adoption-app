@@ -1,5 +1,10 @@
 <h3>Search for an animal</h3>
 <%= form_tag search_pets_path, method: :get do %>
-  <%= select_tag("species", options_for_select(species)) %>
+  <%= label_tag(:animalSpecies, "Species: ") %>
+  <%= select_tag("animalSpecies", options_for_select(species)) %>
+  <%= label_tag(:animalLocation, "Zip Code") %>
+  <%= text_field(:animalLocation, :zipcode, pattern: /\d{5}-?(\d{4})?/) %>
+  <%= label_tag(:animalLocationDistance, "Search Radius: ") %>
+  <%= range_field("animalLocationDistance", :radius, in: 1..100, step: 10) %>
   <%= submit_tag("search") %>
 <% end %>
