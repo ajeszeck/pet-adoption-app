@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+ :root {
+    --dark-accent: #214154;
+    --background: #265961;
+    --red: #ad230e;
+  }
+
+
+ html {
+   font-family: 'Sanchez', serif;
+   font-size: 15px;
+   background-color: var(--background);
+   color: white;
+ }
+
+ body {
+   width: 70%;
+   margin: 0 auto;
+ }
+
+ header {
+   background-color: var(--dark-accent);
+   margin: 0;
+   width: 100%;
+   padding-top: 0.6rem;
+   padding-bottom: 0.6rem;
+ }

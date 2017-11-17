@@ -44,7 +44,7 @@ class Pet < ApplicationRecord
       objectAction: "publicSearch",
       search: {
         resultStart: 0,
-        resultLimit: 50,
+        resultLimit: 15,
         resultSort: "animalID",
         resultOrder: "asc",
         calcFoundRows: "Yes",

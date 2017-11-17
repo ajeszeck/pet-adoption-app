@@ -2,14 +2,17 @@
 
 <% if @pets %>
   <h3>Available animals within <%= @radius %> miles of <%= @zipcode %></h3>
-
-  <% @pets.each_pair do |id, pet| %>
-    <ul>
-      <li><img src="<%= pet["animalPictures"][0]["urlInsecureThumbnail"] %>" alt="<%= pet["animalName"] %>"></li>
-      <li class="pet-name">Name: <%= pet["animalName"] %> </li>
-      <li> Breed: <%= pet["animalBreed"] %> </li>
-      <li> Zip Code: <%= pet["animalLocation"] %> </li>
-      <li> Organization ID: <%= pet["animalOrgID"] %> </li>
-    </ul>
-  <% end %>
+  <div class="pet-listing-area">
+    <% @pets.each_pair do |id, pet| %>
+      <div class="pet-listing">
+        <img class="thumbnail" src="<%= pet["animalPictures"][0]["urlInsecureThumbnail"] %>" width="100" alt="<%= pet["animalName"] %>">
+        <ul class="pet-list">
+          <li class="pet-name"><%= pet["animalName"] %> </li>
+          <li class="items"> Breed: <%= pet["animalBreed"] %> </li>
+          <li class="items"> Zip Code: <%= pet["animalLocation"] %> </li>
+          <li class="items"> Organization ID: <%= pet["animalOrgID"] %> </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 <% end %>

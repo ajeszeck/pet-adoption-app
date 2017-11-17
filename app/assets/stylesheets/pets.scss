@@ -1,0 +1,37 @@
+.pet-listing-area {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.pet-listing {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  margin-right: 1.5rem;
+  width: 440px;
+  background-color: white;
+  border: 2px solid var(--dark-accent);
+  color: black;
+  padding: 0.5rem;
+}
+
+.thumbnail {
+  align-self: center;
+}
+
+.pet-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Sanchez', serif;
+}
+
+.pet-list {
+  list-style-type: none;
+}
+
+.items {
+  margin-left: 0.3rem;
+  margin-top: 0.3rem;
+}
