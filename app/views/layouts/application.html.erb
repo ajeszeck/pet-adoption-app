@@ -3,25 +3,28 @@
   <head>
     <title>PetAdoptionApp</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Sanchez" rel="stylesheet">    <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <header>
-      <%= link_to "Home", root_path %>
-      <% if session[:user_id] %>
+      <%= link_to "Home", root_path, class: "home-button" %>
+      <div class="authorization">
+        <% if session[:user_id] %>
         <p><%= User.find(session[:user_id])[:first_name] %> <%= User.find(session[:user_id])[:last_name] %></p>
         <%= form_tag(session_path(session[:user_id]), method: "delete") do %>
-          <%= submit_tag "logout" %>
+        <%= submit_tag "logout" %>
         <% end %>
-      <% else %>
+        <% else %>
         <%= link_to "Login", new_session_path %>
         <%= link_to "Register", new_user_path %>
-      <% end %>
+        <% end %>    
+      </div>
     </header>
-    <h1>Pet Adoption</h1>
-    <%= yield %>
+    <div class="body">
+      <h1>Pet Adoption</h1>
+      <%= yield %>
+    </div>
   </body>
 </html>

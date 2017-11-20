@@ -13,3 +13,53 @@
  *= require_tree .
  *= require_self
  */
+ :root {
+    --dark-accent: #214154;
+    --background: #265961;
+    --red: #ad230e;
+  }
+ 
+
+ html {
+   font-family: 'Sanchez', serif;
+   font-size: 15px;
+   background-color: var(--background);
+   color: white;
+   height: 100%;
+   width: 100%;
+   box-sizing: border-box;
+ }
+
+ body {
+   width: 100%;
+   height: 100%;
+   background-color: var(--background);
+   margin: 0;
+ }
+
+ .body {
+   width: 70%;
+   margin: 0 auto;
+ }
+
+ header {
+   position: relative;
+   left: 0;
+   right: 0;
+   top: 0;
+   background-color: var(--dark-accent);
+   margin: 0;
+   padding-top: 0.6rem;
+   padding-bottom: 0.6rem;
+   padding-left: 15%;
+   padding-right: 15%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ }
+
+ header a {
+   color: white;
+   text-decoration: none;
+
+ }
