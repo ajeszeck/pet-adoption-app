@@ -1,11 +1,11 @@
 class PetsController < ApplicationController
   def index
-    @species = Pet.species
+    @species = ["Dog", "Cat"]
     @statuses = Pet.statuses
   end
 
   def search
-    p @pets = Pet.search(params)
+    @pets = Pet.search(params)
     @zipcode = params["animalLocation"]["zipcode"]
     @radius = params["animalLocationDistance"]["radius"]
     @species = ["Dog", "Cat"]

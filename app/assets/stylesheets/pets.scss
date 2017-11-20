@@ -8,11 +8,12 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   margin-bottom: 1rem;
   margin-right: 1.5rem;
-  width: 440px;
+  width: 450px;
   background-color: white;
-  border: 2px solid var(--dark-accent);
+  border: 3px solid var(--dark-accent);
   color: black;
   padding: 0.5rem;
 }
