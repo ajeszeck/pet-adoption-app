@@ -3,7 +3,10 @@
   <head>
     <title>PetAdoptionApp</title>
     <%= csrf_meta_tags %>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Sanchez" rel="stylesheet">    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Sanchez" rel="stylesheet">
+    <%= stylesheet_link_tag    'normalize', media: 'all' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+
     <%= javascript_include_tag 'application' %>
   </head>
 
@@ -19,7 +22,7 @@
         <% else %>
         <%= link_to "Login", new_session_path %>
         <%= link_to "Register", new_user_path %>
-        <% end %>    
+        <% end %>
       </div>
     </header>
     <div class="body">
