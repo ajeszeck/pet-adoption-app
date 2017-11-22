@@ -12,6 +12,14 @@ class PetsController < ApplicationController
     render "index"
   end
 
+  def show
+    @id = params[:id]
+    p @pet = Pet.find(params[:id])
+
+  end
+
+  private
+
   def search_params
     params.require(:search).permit(:animalSpecies, :animalLocation, :animalLocationDistance)
   end

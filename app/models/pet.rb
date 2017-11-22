@@ -93,4 +93,31 @@ class Pet < ApplicationRecord
       { headers: @headers, body: data.to_json} )
     response.parsed_response
   end
+
+  def self.find(animalID)
+    data = {
+      apikey: ENV["RG_API_KEY"],
+      objectType: "animals",
+      objectAction: "publicSearch",
+      search: {
+        resultStart: 0,
+        resultLimit: 1,
+        resultSort: "animalID",
+        resultOrder: "asc",
+        calcFoundRows: "Yes",
+        filters: [
+          {
+            fieldName: "animalID",
+            operation: "equals",
+            criteria: animalID,
+          },
+        ],
+      fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation", "animalDescriptionPlain", "animalPictures" ]
+    }
+    }
+    response = HTTParty.post('https://api.rescuegroups.org/http/',
+      { headers: @headers, body: data.to_json} )
+      p "*****************************************"
+    response.parsed_response
+  end
 end

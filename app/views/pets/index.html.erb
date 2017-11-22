@@ -5,9 +5,13 @@
   <div class="pet-listing-area">
     <% @pets.each_pair do |id, pet| %>
       <div class="pet-listing">
-        <img class="thumbnail" src="<%= pet["animalPictures"][0]["urlInsecureThumbnail"] %>" width="100" alt="<%= pet["animalName"] %>">
+        <% if pet["animalPictures"].length != 0 %>
+          <img class="thumbnail" src="<%= pet["animalPictures"][0]["urlInsecureThumbnail"] %>" width="100" alt="<%= pet["animalName"] %>">
+        <% else %>
+          <p>Oops, this pet doesn't have a picture yet!</p>
+        <% end %>
         <ul class="pet-list">
-          <li class="pet-name"><%= pet["animalName"] %> </li>
+          <li class="pet-name"><a href="<%= pet["animalID"] %>"><%= pet["animalName"] %></a></li>
           <li class="items"> Breed: <%= pet["animalBreed"] %> </li>
           <li class="items"> Zip Code: <%= pet["animalLocation"] %> </li>
           <li class="items"> Organization ID: <%= pet["animalOrgID"] %> </li>
