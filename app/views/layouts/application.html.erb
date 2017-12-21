@@ -3,6 +3,7 @@
   <head>
     <title>PetAdoptionApp</title>
     <%= csrf_meta_tags %>
+    <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Sanchez" rel="stylesheet">
     <%= stylesheet_link_tag    'normalize', media: 'all' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -12,7 +13,7 @@
 
   <body>
     <header>
-      <%= link_to "Home", root_path, class: "home-button" %>
+      <%= link_to "Pet Adoption", root_path, class: "home-button" %>
       <div class="authorization">
         <% if session[:user_id] %>
         <p><%= User.find(session[:user_id])[:first_name] %> <%= User.find(session[:user_id])[:last_name] %></p>
@@ -26,7 +27,6 @@
       </div>
     </header>
     <div class="body">
-      <h1>Pet Adoption</h1>
       <%= yield %>
     </div>
   </body>
