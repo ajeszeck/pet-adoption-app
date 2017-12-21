@@ -12,9 +12,3 @@
 //
 //= require rails-ujs
 //= require_tree .
-
-document.onLoad = function() {
-  console.log("loaded")
-  let petDescription = document.querySelector('.pet-description');
-  petDescription.innerHTML = petDescription.innerHTML.replace(/&nbsp;/g,'');
-}
