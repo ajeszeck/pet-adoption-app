@@ -14,8 +14,8 @@ class PetsController < ApplicationController
 
   def show
     @id = params[:id]
-    p @pet = Pet.find(params[:id])
-
+    @pet = Pet.find(params[:id])
+    @org = Organization.lookup(@pet["data"][@id]["animalOrgID"])
   end
 
   private

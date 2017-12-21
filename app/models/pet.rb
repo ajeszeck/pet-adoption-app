@@ -117,7 +117,6 @@ class Pet < ApplicationRecord
     }
     response = HTTParty.post('https://api.rescuegroups.org/http/',
       { headers: @headers, body: data.to_json} )
-      p "*****************************************"
     response.parsed_response
   end
 end

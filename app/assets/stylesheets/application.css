@@ -18,7 +18,7 @@
     --background: #265961;
     --red: #ad230e;
   }
- 
+
 
  html {
    font-family: 'Sanchez', serif;
@@ -56,10 +56,15 @@
    display: flex;
    flex-direction: row;
    justify-content: space-between;
+   align-items: center;
  }
 
  header a {
    color: white;
    text-decoration: none;
 
+ }
+
+ .home-button {
+   font-size: 2.5rem;
  }
