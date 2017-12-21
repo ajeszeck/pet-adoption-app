@@ -1,0 +1,7 @@
+<h2> <%= @pet["data"][@id]["animalName"] %> </h2>
+<img src="<%= @pet["data"][@id]["animalPictures"][0]["urlSecureFullsize"]  %>" alt="<%= @pet["data"][@id]["animalName"] %>">
+<div class="pet-info">
+  <p><%= @pet["data"][@id]["animalBreed"] %></p>
+  <p class="pet-description"><%= raw @pet["data"][@id]["animalDescriptionPlain"] %></p>
+  <p>Located at <%= @org["data"][0]["orgName"] %> in zipcode <%= @pet["data"][@id]["animalLocation"] %></p>
+</div>
