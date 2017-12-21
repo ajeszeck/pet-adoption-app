@@ -57,14 +57,40 @@
    flex-direction: row;
    justify-content: space-between;
    align-items: center;
- }
-
- header a {
-   color: white;
-   text-decoration: none;
-
+   a {
+     color: white;
+     text-decoration: none;
+   }
  }
 
  .home-button {
    font-size: 2.5rem;
+ }
+
+ .new_user {
+   display: flex;
+   flex-direction: column;
+   margin: auto;
+   width: 50%;
+   border-radius: 5px;
+   background-color: rgba(255, 255, 255, 0.1);
+   padding: 1rem;
+   padding-top: 1.5rem;
+   margin-top: 1rem;
+   input {
+     width: 90%;
+     margin-top: 8px;
+     margin-bottom: 8px;
+   }
+   button {
+     width: 80px;
+     margin-top: 5px;
+     padding: 10px;
+     border-radius: 5px;
+     border: 2px solid white;
+     background: transparent;
+     color: white;
+     font-family: 'Sanchez', serif;
+     align-self: center;
+   }
  }

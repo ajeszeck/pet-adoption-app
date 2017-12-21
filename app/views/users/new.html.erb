@@ -1,3 +1,4 @@
+<h2>Start the search for your next family member!</h2>
 <%= form_for @user do |f| %>
   <%= label_tag 'first_name', "First Name:" %>
   <%= f.text_field :first_name %>
@@ -7,5 +8,5 @@
   <%= f.text_field :email %>
   <%= label_tag 'password', "Password:" %>
   <%= f.text_field :password %>
-  <%= f.submit "Submit" %>
+  <%= f.button "Submit" %>
 <% end %>
